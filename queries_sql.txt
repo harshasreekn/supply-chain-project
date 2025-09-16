@@ -1,0 +1,26 @@
+select * from products;
+select * from inventory;
+
+SELECT * FROM products LIMIT 10;
+SELECT * FROM inventory LIMIT 10;
+
+SELECT COUNT(*) FROM products;
+SELECT COUNT(*) FROM inventory;
+
+SELECT category, SUM(Quantity) AS total_quantity
+FROM inventory
+GROUP BY category
+ORDER BY total_quantity DESC;
+
+SELECT stock_status, COUNT(*) AS no_of_items FROM inventory GROUP BY stock_status;
+
+SELECT p.Product_ID, p.Product_Name, p.Category, p.Price,i.Warehouse_ID,i.Quantity,i.stock_status FROM products p JOIN inventory i ON p.Product_ID = i.Product_ID LIMIT 20;
+
+SELECT p.Category,SUM(p.Price * i.Quantity) AS stock_value FROM products p JOIN inventory i ON p.Product_ID = i.Product_ID GROUP BY p.Category ORDER BY stock_value DESC;
+
+SELECT p.Product_Name, SUM(i.Quantity) AS total_stock FROM products p JOIN inventory i ON p.Product_ID = i.Product_ID GROUP BY p.Product_Name ORDER BY total_stock DESC LIMIT 5;
+
+SELECT Warehouse_ID, COUNT(*) AS critical_count FROM inventory WHERE stock_status = 'critical' GROUP BY Warehouse_ID ORDER BY critical_count DESC;
+
+SELECT p.Category,SUM(CASE WHEN i.stock_status='critical' THEN 1 ELSE 0 END)*100.0/COUNT(*) AS CriticalPercent FROM inventory i JOIN products p ON i.Product_ID=p.Product_ID GROUP BY p.Category;
+
