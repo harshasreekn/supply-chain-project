@@ -1,0 +1,26 @@
+# Data Cleaning Steps
+
+## Excel Stage
+1. Removed duplicates:
+   - Products → Product_ID
+   - Suppliers → Supplier_ID
+   - Inventory → (Warehouse_ID + Product_ID)
+
+2. Checked and removed null/blank rows.
+
+3. Standardized columns:
+   - IDs → Text
+   - Quantity, Reorder_Level → Whole Number
+   - Price → Decimal
+
+4. Derived "stock_status" column:
+   - IF Quantity < Reorder_Level → 'critical'
+   - ELSE 'safe'
+
+5. Final structure:
+   - Products
+   - Suppliers
+   - Warehouses
+   - Inventory
+   - Shipments
+
