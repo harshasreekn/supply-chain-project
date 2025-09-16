@@ -1,0 +1,33 @@
+# Data Dictionary
+
+## Products
+- Product_ID (VARCHAR): Unique product code
+- Product_Name (TEXT): Product label
+- Category (TEXT): Furniture, Stationery, Clothing, Electronics, Groceries
+- Price (DECIMAL): Unit price
+- Supplier_ID (VARCHAR): Supplier foreign key
+
+## Inventory
+- Inventory_ID (VARCHAR): Unique record for stock
+- Product_ID (VARCHAR): FK to Products
+- Warehouse_ID (VARCHAR): FK to Warehouses
+- Quantity (INT): Available stock units
+- Reorder_Level (INT): Threshold for reorder
+- stock_status (TEXT): 'safe' or 'critical'
+- category (TEXT): Product category (redundant but kept for easy filtering)
+
+## Suppliers
+- Supplier_ID (VARCHAR): Unique supplier code
+- Supplier_Name (TEXT): Supplier name
+- Location (TEXT): City
+
+## Warehouses
+- Warehouse_ID (VARCHAR): Unique warehouse code
+- City (TEXT): City name
+
+## Shipments
+- Shipment_ID (VARCHAR): Shipment record
+- Product_ID (VARCHAR): FK to Products
+- Warehouse_ID (VARCHAR): FK to Warehouses
+- Delivered_Quantity (INT): Units delivered
+- Delay_Days (INT): Delivery delay
